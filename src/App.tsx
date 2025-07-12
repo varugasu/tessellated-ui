@@ -28,8 +28,8 @@ function App() {
         triangles.push({
           points: [
             [x + triangleSize, y + h],
+            [x + triangleSize * 1.5, y],
             [x + triangleSize / 2, y],
-            [x + triangleSize * 2, y],
           ],
           color: "green",
         });
@@ -45,7 +45,7 @@ function App() {
         triangles.push({
           points: [
             [x + triangleSize, y],
-            [x + triangleSize * 2, y + h],
+            [x + triangleSize * 1.5, y + h],
             [x + triangleSize / 2, y + h],
           ],
           color: "purple",
@@ -61,6 +61,8 @@ function App() {
           <polygon
             key={index}
             points={triangle.points.map((point) => point.join(",")).join(" ")}
+            stroke="black"
+            // fill="none"
             fill={triangle.color}
           />
         ))}
