@@ -15,11 +15,11 @@ function App() {
 
   const triangles = useMemo(() => {
     const triangles: Triangle[] = [];
-    for (let y = -h / 2; y < height + h; y += h) {
-      for (let x = -triangleSize; x < width + triangleSize; x += triangleSize) {
-        const isUp = Math.floor(y / h) % 2 === 0;
+    for (let y = -h / 2; y < height; y += h) {
+      for (let x = -triangleSize; x < width; x += triangleSize) {
+        const isUpwards = Math.floor(y / h) % 2 === 0;
 
-        if (isUp) {
+        if (isUpwards) {
           triangles.push({
             points: [
               [x + triangleSize / 2, y],
@@ -82,7 +82,7 @@ function App() {
     const lightness = 50 + wave * 5;
     const alpha = Math.max(0, wave) * 0.25;
 
-    return `hsla(${hue}, 50%, ${lightness}%, ${alpha.toFixed(3)})`;
+    return `hsla(${hue}, 100%, ${lightness}%, ${alpha.toFixed(3)})`;
   }
 
   return (
