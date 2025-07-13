@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from "react";
+
 type Points = [number, number];
 
 type Triangle = {
@@ -7,8 +9,8 @@ type Triangle = {
 
 function App() {
   const width = window.innerWidth;
-  const height = 200;
-  const triangleSize = 50;
+  const height = window.innerHeight;
+  const triangleSize = 100;
   const h = (triangleSize * Math.sqrt(3)) / 2;
   const triangles: Triangle[] = [];
 
@@ -54,19 +56,48 @@ function App() {
     }
   }
 
+  const [time, setTime] = useState(0);
+  const rafRef = useRef<number>(0);
+
+  useEffect(() => {
+    const start = performance.now();
+    const animate = (now: number) => {
+      const t = (now - start) / 1000; // seconds
+      setTime(t);
+      rafRef.current = requestAnimationFrame(animate);
+    };
+    rafRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafRef.current!);
+  }, []);
+
+  function getTriangleColor(index: number, t: number): string {
+    const seed = (index * 0.61803398875) % 1;
+    const phase = seed * Math.PI * 3;
+    const freq = 0.5 + seed * 1;
+    const wave = Math.sin(t * freq + phase);
+    const hue = 220 + Math.sin(phase * 3) * 15;
+    const lightness = 50 + wave * 5;
+    const alpha = Math.max(0, wave) * 0.25;
+
+    return `hsla(${hue}, 50%, ${lightness}%, ${alpha.toFixed(3)})`;
+  }
+
   return (
-    <div className="w-full">
-      <svg width={width} height={height} className="bg-red-100">
+    <div className="w-full bg-blue-500 h-screen">
+      <svg width={width} height={height} className="absolute select-none">
         {triangles.map((triangle, index) => (
           <polygon
             key={index}
             points={triangle.points.map((point) => point.join(",")).join(" ")}
             stroke="black"
-            // fill="none"
-            fill={triangle.color}
+            strokeWidth={0.15}
+            fill={getTriangleColor(index, time)}
           />
         ))}
       </svg>
+      <div className="text-[45rem] text-white tracking-[0.75rem] font-bold text-center">
+        海
+      </div>
     </div>
   );
 }
