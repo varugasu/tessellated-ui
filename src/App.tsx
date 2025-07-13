@@ -5,7 +5,7 @@ type Points = [number, number];
 
 type Triangle = {
   points: Points[];
-  color?: string;
+  debugColor?: string;
 };
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
               [x + triangleSize, y + h],
               [x, y + h],
             ],
-            color: "red",
+            debugColor: "red",
           });
           triangles.push({
             points: [
@@ -34,7 +34,7 @@ function App() {
               [x + triangleSize * 1.5, y],
               [x + triangleSize / 2, y],
             ],
-            color: "green",
+            debugColor: "green",
           });
         } else {
           triangles.push({
@@ -43,7 +43,7 @@ function App() {
               [x, y],
               [x + triangleSize, y],
             ],
-            color: "blue",
+            debugColor: "blue",
           });
           triangles.push({
             points: [
@@ -51,7 +51,7 @@ function App() {
               [x + triangleSize * 1.5, y + h],
               [x + triangleSize / 2, y + h],
             ],
-            color: "purple",
+            debugColor: "purple",
           });
         }
       }
