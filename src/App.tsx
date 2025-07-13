@@ -86,7 +86,10 @@ function App() {
   }
 
   return (
-    <div className="w-full bg-blue-500 h-screen">
+    <div
+      className="w-full bg-blue-500"
+      style={{ height: `${height}px`, position: "relative" }}
+    >
       <svg width={width} height={height} className="absolute select-none">
         {triangles.map((triangle, index) => (
           <polygon
