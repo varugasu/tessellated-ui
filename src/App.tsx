@@ -5,17 +5,17 @@ type Points = [number, number];
 
 type Triangle = {
   points: Points[];
-  color: string;
+  color?: string;
 };
 
 function App() {
   const { width, height } = useWindowSize();
-  const triangleSize = Math.max(height / 6, 100);
-  const h = (triangleSize * Math.sqrt(3)) / 3;
+  const triangleSize = Math.max(height / 8, 100);
+  const h = triangleSize * (Math.sqrt(3) / 2);
 
   const triangles = useMemo(() => {
     const triangles: Triangle[] = [];
-    for (let y = 0; y < height + h; y += h) {
+    for (let y = -h / 2; y < height + h; y += h) {
       for (let x = -triangleSize; x < width + triangleSize; x += triangleSize) {
         const isUp = Math.floor(y / h) % 2 === 0;
 
