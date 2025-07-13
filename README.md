@@ -106,3 +106,7 @@ useEffect(() => {
 `requestAnimationFrame` is called in sync with the browser’s refresh cycle. Each time it executes, it passes a `now: DOMHighResTimeStamp` to the `animate` function. This `now` represents the current high-resolution time when the frame is being rendered
 
 By subtracting our original `start` timestamp from `now`, we get the accurate elapsed time since the animation began. When we call `setTime(t), `we update the animation in a way that stays perfectly in sync with the screen refresh, making it smooth and consistent.
+
+# Canvas Implementation
+
+I have asked GPT to improve the perfomance and it suggested using `<canvas>`. I will leave the code on `./src/CanvasApp.tsx`, but I won't be digging deeper on it for now
